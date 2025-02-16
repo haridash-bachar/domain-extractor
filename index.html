@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Extractor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="logo">🌐 This tool will be used for our daily task</div>
+
+    <div class="container">
+        <h2>🔗 Bulk Domain Extractor</h2>
+        
+        <!-- Total Input Counter -->
+        <p id="totalInput">Total Input: 0 URLs</p>
+
+        <textarea id="urlInput" placeholder="Paste URLs (one per line, up to 1000)"></textarea>
+        <button class="extract-btn" onclick="extractDomains()">Extract Domains</button>
+
+        <!-- Output Box (Fixed Area) -->
+       
+        <div class="result-box">
+            
+            <div id="result"></div>
+        </div>
+
+        <!-- Total Output Count -->
+        <p id="totalOutput" class="total-output">Total Extracted: 0 Domains</p>
+
+        <div class="btn-container">
+            <button onclick="copyToClipboard()">📋 Copy</button>
+            <button onclick="selectAllText()">🔍 Select All</button>
+            <button class="clear-btn" onclick="clearFields()">🗑 Clear</button>
+        </div>
+    </div>
+
+    <div class="footer">Developed by <strong>Haridash Bachar</strong></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
