@@ -57,3 +57,34 @@ function clearFields() {
     document.getElementById("totalInput").innerText = "Total Input: 0 URLs";
     document.getElementById("totalOutput").innerText = "Total Extracted: 0 Domains";
 }
+
+
+function downloadResults(type) {
+    let text = document.getElementById("result").innerText;
+    if (!text) return alert("No data to download.");
+    let blob = new Blob([text], { type: type === "csv" ? "text/csv" : "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `extracted_domains.${type}`;
+    link.click();
+}
+
+
+document.getElementById("fileUpload").addEventListener("change", function() {
+    let file = this.files[0];
+    if (!file) return;
+    
+    let reader = new FileReader();
+    reader.onload = function(e) {
+    let urlInput = document.getElementById("urlInput");
+    urlInput.value = e.target.result;
+    urlInput.dispatchEvent(new Event("input")); // Trigger input event if needed
+    };
+    reader.readAsText(file);
+    });
+
+
+
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+}
