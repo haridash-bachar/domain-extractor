@@ -38,15 +38,20 @@ function extractDomains() {
 }
 
 function copyToClipboard() {
-    let text = document.getElementById("result").innerText;
-    if (text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Copied to clipboard!");
-        }).catch(() => {
-            alert("Failed to copy!");
-        });
-    }
-}
+            let text = document.getElementById("result").innerText;
+            let copyButton = document.getElementById("copyButton");
+
+            if (text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    copyButton.innerHTML = "✅ Copied"; // Change button text
+                    setTimeout(() => {
+                        copyButton.innerHTML = "📋 Copy"; // Revert after 2 seconds
+                    }, 2000);
+                }).catch(() => {
+                    alert("Failed to copy!");
+                });
+            }
+        }
 
 function selectAllText() {
     let range = document.createRange();
