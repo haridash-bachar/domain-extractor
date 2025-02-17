@@ -4,31 +4,37 @@ document.getElementById("urlInput").addEventListener("input", function() {
 });
 
 function extractDomains() {
-    let urls = document.getElementById("urlInput").value.trim().split("\n");
-    let totalInput = urls.length;
-    let extractedDomains = [];
+    document.getElementById("progress").classList.remove("hidden");
+    setTimeout(() => {
+        let urls = document.getElementById("urlInput").value.trim().split("\n");
+        let extractedDomains = new Set();
+        let invalidUrls = [];
+        let tldFilter = document.getElementById("tldFilter").value;
 
-    urls.forEach(url => {
-        url = url.trim();
-        if (url) {
-            try {
-                if (!/^https?:\/\//i.test(url)) {
-                    url = "https://" + url;
+        urls.forEach(url => {
+            url = url.trim();
+            if (url) {
+                try {
+                    if (!/^https?:\/\//i.test(url)) {
+                        url = "https://" + url;
+                    }
+                    let hostname = new URL(url).hostname.replace(/^www\./, '');
+                    if (tldFilter === "all" || hostname.endsWith(tldFilter)) {
+                        extractedDomains.add(hostname);
+                    }
+                } catch (error) {
+                    invalidUrls.push(url);
                 }
-                let hostname = new URL(url).hostname.replace(/^www\./, '');
-                extractedDomains.push(hostname);
-            } catch (error) {
-                console.warn("Invalid URL skipped:", url);
             }
-        }
-    });
+        });
 
-    let totalOutput = extractedDomains.length;
-
-    document.getElementById("result").innerHTML = 
-        totalOutput > 0 ? extractedDomains.join("<br>") : "No valid URLs found. Please check your input.";
-
-    document.getElementById("totalOutput").innerText = `Total Extracted: ${totalOutput} Domains`;
+        document.getElementById("result").innerHTML = 
+            extractedDomains.size > 0 ? Array.from(extractedDomains).join("<br>") : "No valid domains found.";
+        document.getElementById("invalidUrls").innerHTML = 
+            invalidUrls.length > 0 ? invalidUrls.join("<br>") : "No invalid URLs.";
+        document.getElementById("totalOutput").innerText = `Total Extracted: ${extractedDomains.size} Domains`;
+        document.getElementById("progress").classList.add("hidden");
+    }, 500);
 }
 
 function copyToClipboard() {
@@ -36,7 +42,7 @@ function copyToClipboard() {
     if (text) {
         navigator.clipboard.writeText(text).then(() => {
             alert("Copied to clipboard!");
-        }).catch(err => {
+        }).catch(() => {
             alert("Failed to copy!");
         });
     }
@@ -54,10 +60,10 @@ function selectAllText() {
 function clearFields() {
     document.getElementById("urlInput").value = "";
     document.getElementById("result").innerText = "";
+    document.getElementById("invalidUrls").innerText = "";
     document.getElementById("totalInput").innerText = "Total Input: 0 URLs";
     document.getElementById("totalOutput").innerText = "Total Extracted: 0 Domains";
 }
-
 
 function downloadResults(type) {
     let text = document.getElementById("result").innerText;
