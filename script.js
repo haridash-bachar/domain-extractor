@@ -1,3 +1,31 @@
+document.addEventListener("mousemove", (e) => {
+    const container = document.querySelector(".container");
+    const rect = container.getBoundingClientRect();
+
+    // Check if cursor is inside the container
+    if (
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom
+    ) {
+        return; // Stop effect inside the container
+    }
+
+    for (let i = 0; i < 5; i++) { // Creates multiple particles per move
+        let particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = (e.pageX + (Math.random() * 20 - 10)) + "px";
+        particle.style.top = (e.pageY + (Math.random() * 20 - 10)) + "px";
+        particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 1500); // Remove after animation
+    }
+});
+
+
+
 document.getElementById("urlInput").addEventListener("input", function() {
     let urls = this.value.trim().split("\n").filter(url => url !== "");
     document.getElementById("totalInput").innerText = `Total Input: ${urls.length} URLs`;
