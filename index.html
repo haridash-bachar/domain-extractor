@@ -3,42 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domain Extractor</title>
+    <title>Enhanced Domain Extractor</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="logo">🌐 This tool will be used for our daily task</div>
-
+    <div class="logo">🌐 Enhanced Domain Extractor</div>
+    <button class="toggle-theme" onclick="toggleTheme()">🌗 Toggle Theme</button>
     <div class="container">
         <h2>🔗 Bulk Domain Extractor</h2>
-        
-        <!-- Total Input Counter -->
         <p id="totalInput">Total Input: 0 URLs</p>
-
         <textarea id="urlInput" placeholder="Paste URLs (one per line, up to 1000)"></textarea>
+        <input type="file" id="fileUpload" accept=".txt,.csv" onchange="handleFileUpload()">
         <button class="extract-btn" onclick="extractDomains()">Extract Domains</button>
-
-        <!-- Output Box (Fixed Area) -->
-       
+        <div id="progress" class="hidden">⏳ Processing...</div>
         <div class="result-box">
-            
+            <h3>Invalid URLs</h3>
+            <div id="invalidUrls"></div>
+            <h3>Extracted Domains</h3>
             <div id="result"></div>
         </div>
-
-        <!-- Total Output Count -->
         <p id="totalOutput" class="total-output">Total Extracted: 0 Domains</p>
+        <select id="tldFilter">
+            <option value="all">All Domains</option>
+            <option value=".com">.com</option>
+            <option value=".net">.net</option>
+            <option value=".org">.org</option>
+            <option value=".org">.biz</option>
+            <option value=".org">.info</option>
+            <option value=".org">.asia</option>
+            <option value=".org">.mobi</option>
+            <option value=".org">.tv</option>
+            <option value=".org">.gov</option>
+            <option value=".org">.edu</option>
+            <option value=".org">.us</option>
+            <option value=".org">.in</option>
+            <option value=".org">.co</option>
+            <option value=".org">.com.co</option>
 
+        </select>
         <div class="btn-container">
             <button onclick="copyToClipboard()">📋 Copy</button>
             <button onclick="selectAllText()">🔍 Select All</button>
             <button class="clear-btn" onclick="clearFields()">🗑 Clear</button>
+            <button onclick="downloadResults('csv')">📥 Download CSV</button>
+            <button onclick="downloadResults('txt')">📥 Download TXT</button>
+
         </div>
     </div>
-
     <div class="footer">Developed by <strong>Haridash Bachar</strong></div>
-
     <script src="script.js"></script>
-
 </body>
 </html>
