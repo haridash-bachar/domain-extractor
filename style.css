@@ -13,6 +13,16 @@ body {
     transition: background 0.3s ease-in-out;
 }
 
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 10px white;
+    animation: fadeOut 1.5s ease-out forwards;
+}
+
 .container {
     background: white;
     padding: 20px;
