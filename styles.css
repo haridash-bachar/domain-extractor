@@ -296,3 +296,13 @@ footer {
     position: fixed;
     bottom: 0;
 }
+.footer_color {
+    color: white;
+    font-size: 17px;
+
+}
+.p1 {
+    color:white;
+    font-size: 25px;
+
+}
