@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Extractor - LeadGenTool</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Logo">
+        </div>
+
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="domain.html">Domain Extractor</a></li>
+            <li><a href="email.html">Email Extractor</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Me</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="email-section">
+
+        <div class="right_new">
+            <h1 >Is extracted email data accurate?</h1>
+            <p>The accuracy of extracted email data is a critical concern for anyone utilizing email scraping tools. While these tools can gather large volumes of addresses from the web, the reliability of this data is often questionable. Factors influencing accuracy include outdated website information, changes in user email addresses, and the increasing use of anti-scraping technologies by websites.
+
+                To enhance accuracy, it's essential to employ email verification services that validate the existence and deliverability of extracted addresses. Regularly cleaning your email lists and removing invalid or inactive emails is crucial for maintaining a good sender reputation and avoiding high bounce rates.
+                
+                While email extractors can be a starting point for lead generation, they should be used in conjunction with robust verification processes to ensure you're targeting real, active email addresses for effective marketing campaigns. Prioritizing data accuracy over sheer volume is key to maximizing campaign success and avoiding potential issues with email deliverability and spam filters.
+            </p>
+
+        </div>
+
+        
+        <div class="email_extractor">
+            <h1 class="email_box_h1">Email Extractor</h1>
+            <textarea id="emailInput" placeholder="Paste your text here..."></textarea>
+            <button onclick="extractEmails()" class="btn">Extract Emails</button>
+            <button id="copyEmail" onclick="copyClipboardEmail()" class="btn copy_button">📋 Copy</button>
+            <button onclick="clearEmail()" class="btn btn-secondary">🗑 Clear</button>
+            <div id="emailOutput"></div>
+            </div>
+
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 LeadGenTool. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

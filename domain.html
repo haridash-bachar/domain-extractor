@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Extractor - LeadGenTool</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Logo">
+        </div>
+
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="domain.html">Domain Extractor</a></li>
+            <li><a href="email.html">Email Extractor</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Tool Section -->
+  <section class="tool-section">
+        <div class="container">
+            <h1>Domain Extractor</h1>
+            <p>Extract domains from any text in seconds!</p>
+            <p class="count"><span id="inputCount"></span></p>
+            <textarea id="domainInput" placeholder="Paste URLs (one per line, up to 1000)" rows="10"></textarea>
+            <input type="file" id="fileUpload" accept=".txt,.csv" onchange="handleFileUpload()">
+            <select id="tldFilter">
+                <option value="all">All Domains</option>
+                <option value=".com">.com</option>
+                <option value=".net">.net</option>
+                <option value=".org">.org</option>
+                <option value=".org">.biz</option>
+                <option value=".org">.info</option>
+                <option value=".org">.asia</option>
+                <option value=".org">.mobi</option>
+                <option value=".org">.tv</option>
+                <option value=".org">.gov</option>
+                <option value=".org">.edu</option>
+                <option value=".org">.us</option>
+                <option value=".org">.in</option>
+                <option value=".org">.co</option>
+                <option value=".org">.com.co</option>
+    
+            </select>
+            <div class="button-group">
+
+                <button onclick="extractDomains()" class="btn" >Extract Domains</button>
+                <button id="copyButton" onclick="copyToClipboard()" class="btn btn-secondary">📋 Copy</button>
+                <button onclick="clearDomains()" class="btn btn-secondary">🗑 Clear</button>
+                <button onclick="downloadResults('csv')" class="btn btn-secondary">📥 Download CSV</button>
+            </div>
+            <div id="progress" class="hidden">⏳ Processing...</div>
+
+            <div class="stats">
+                <p><span id="extractedCount"></span></p>
+            </div>
+
+            <div id="domainOutput" class="output-box"></div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+
+
+    
+
+
+
+
+    <footer class="footer">
+        <p>© 2025 LeadGenTool. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
