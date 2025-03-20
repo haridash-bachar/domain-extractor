@@ -126,3 +126,78 @@ document.getElementById("fileUpload").addEventListener("change", function() {
 function toggleTheme() {
     document.body.classList.toggle("dark-mode");
 }
+
+
+function extractEmails() {
+    let text = document.getElementById("inputText").value;
+    let emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+    let emails = text.match(emailPattern) || [];
+
+    let outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = "";
+
+    let emailCount = emails.length;
+
+
+        // Show the count of emails
+        let countElement = document.createElement("p");
+        countElement.textContent = `Total Emails Found: ${emailCount}`;
+        countElement.style.fontWeight = "bold";
+        countElement.style.color = "rgb(252, 252, 252)"; // Green for count
+        outputDiv.appendChild(countElement);
+    
+        if (emailCount > 0) {
+            emails.forEach(email => {
+                let emailElement = document.createElement("p");
+                emailElement.textContent = email;
+                emailElement.style.color = "#ffeb3b"; // Stylish color for emails
+                emailElement.style.fontWeight = "bold";
+                outputDiv.appendChild(emailElement);
+            });
+        } else {
+            outputDiv.innerHTML = "<p style='color: red;'>❌ No emails found!</p>";
+        }
+    }
+
+
+    // Copy Emails to Clipboard
+   // Copy Emails to Clipboard and Change Button Text
+function copyEmails() {
+    let outputDiv = document.getElementById("output");
+    let emails = outputDiv.innerText;
+
+    if (emails.trim() === "" || emails.includes("No emails found")) {
+        alert("⚠️ No emails to copy!");
+        return;
+    }
+
+    // Remove unnecessary line breaks, spaces, and exclude the "Total Emails Found" text
+    let emailArray = emails.split("\n")
+    .filter(email => email.trim() !== "Total Emails Found:" && email.trim() !== "" && !email.includes("Total Emails Found"));
+
+    // Join emails with line breaks to ensure they appear vertically
+    let formattedEmails = emailArray.join("\n"); // Each email on a new line
+
+    // Copy formatted emails to clipboard
+    navigator.clipboard.writeText(formattedEmails).then(() => {
+        // Change button text to "Email Copied"
+        let copyButton = document.querySelector(".copyEmail");
+        copyButton.textContent = "✅ Email Copied!";
+
+        // Revert the button text after 2 seconds
+        setTimeout(() => {
+            copyButton.textContent = "📋 Copy Emails";
+        }, 2000);
+    }).catch(err => {
+        console.error("Failed to copy: ", err);
+    });
+}
+
+    
+// Clear Input and Output
+function clearFields() {
+    document.getElementById("inputText").value = "";
+    document.getElementById("output").innerHTML = "";
+}
+
+
